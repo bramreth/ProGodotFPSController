@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5j84rvprsef"]
+[gd_scene load_steps=8 format=3 uid="uid://c5j84rvprsef"]
 
 [ext_resource type="PackedScene" uid="uid://bhmpponvjvir2" path="res://player.tscn" id="2_471bj"]
 
@@ -15,12 +15,9 @@ sky = SubResource("Sky_e4own")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wv6tv"]
-load_path = "res://.godot/imported/texture_02.png-08f8842f540b881f4ec04b0179b481eb.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w608f"]
 vertex_color_is_srgb = true
-albedo_texture = SubResource("CompressedTexture2D_wv6tv")
+albedo_color = Color(0.996094, 0.703125, 0.140625, 1)
 uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 5
