@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5j84rvprsef"]
+
+[ext_resource type="PackedScene" uid="uid://bhmpponvjvir2" path="res://player.tscn" id="2_471bj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y40up"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_e4own"]
+sky_material = SubResource("ProceduralSkyMaterial_y40up")
+
+[sub_resource type="Environment" id="Environment_b1xvs"]
+background_mode = 2
+sky = SubResource("Sky_e4own")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wv6tv"]
+load_path = "res://.godot/imported/texture_02.png-08f8842f540b881f4ec04b0179b481eb.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w608f"]
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_wv6tv")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q2cse"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_40rve"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b1xvs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_w608f")
+mesh = SubResource("PlaneMesh_q2cse")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_40rve")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -4.67729)
+use_collision = true
+size = Vector3(1, 1.2, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -7.909)
+use_collision = true
+size = Vector3(1, 2.4, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -7.909)
+use_collision = true
+size = Vector3(1, 2.4, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.744, 1.8, -7.909)
+use_collision = true
+size = Vector3(1, 3.6, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.744, 1.8, -4.53392)
+use_collision = true
+size = Vector3(1, 3.6, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_471bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
