@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5j84rvprsef"]
+[gd_scene load_steps=9 format=3 uid="uid://c5j84rvprsef"]
 
-[ext_resource type="PackedScene" uid="uid://bhmpponvjvir2" path="res://player.tscn" id="2_471bj"]
+[ext_resource type="PackedScene" uid="uid://vwr8ajoufse8" path="res://Controller/Player.tscn" id="1_313jf"]
+[ext_resource type="PackedScene" uid="uid://b4mrqfvtlycnc" path="res://brambox/UserInterface/user_interface.tscn" id="2_4pk00"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y40up"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -71,5 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.744, 1.8, -4.53392)
 use_collision = true
 size = Vector3(1, 3.6, 1)
 
-[node name="Player" parent="." instance=ExtResource("2_471bj")]
+[node name="Player" parent="." instance=ExtResource("1_313jf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+jump_height = 1.2
+
+[node name="UserInterface" parent="." instance=ExtResource("2_4pk00")]

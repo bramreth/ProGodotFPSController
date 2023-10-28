@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://vwr8ajoufse8"]
+
+[ext_resource type="Script" path="res://Controller/Player.gd" id="1_12if5"]
+[ext_resource type="Script" path="res://Controller/SmoothCamera.gd" id="2_e12si"]
+[ext_resource type="PackedScene" uid="uid://bxpe2ddq6o6yk" path="res://Controller/Weapon/rifle.tscn" id="3_11jxd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_leh0u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7spk"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_12if5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_leh0u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t7spk")
+
+[node name="SmoothCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+cull_mask = 1047549
+script = ExtResource("2_e12si")
+target = NodePath("../CameraTarget")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="SmoothCamera"]
+remote_path = NodePath("../../SubViewportContainer/SubViewport/WeaponCamera3D")
+
+[node name="PlayerRay" type="RayCast3D" parent="SmoothCamera"]
+target_position = Vector3(0, 0, -15)
+collide_with_areas = true
+
+[node name="CameraTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+screen_space_aa = 1
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="WeaponCamera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+cull_mask = 1047554
+fov = 40.0
+
+[node name="Weapons" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -1.4)
+
+[node name="Rifle" parent="SubViewportContainer/SubViewport/WeaponCamera3D/Weapons" instance=ExtResource("3_11jxd")]

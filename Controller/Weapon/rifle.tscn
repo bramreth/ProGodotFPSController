@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://bxpe2ddq6o6yk"]
+
+[ext_resource type="PackedScene" uid="uid://ccbufmad5r806" path="res://Controller/Assets/gltf/Gun_Rifle.gltf" id="1_3w40h"]
+[ext_resource type="Script" path="res://Controller/Weapon/Weapon.gd" id="1_733kj"]
+[ext_resource type="PackedScene" uid="uid://d4aikv68rak0a" path="res://Controller/Weapon/HitMarker.tscn" id="2_ghi58"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0iu8"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_o60wd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aaj6w"]
+curve = SubResource("Curve_o60wd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b5nwt"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, 1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_aaj6w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v42r"]
+resource_name = "Material"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6dhkm"]
+_surfaces = [{
+"aabb": AABB(-0.025, -0.5, -0.025, 0.05, 1.50001, 0.05),
+"format": 4097,
+"index_count": 24,
+"index_data": PackedByteArray(4, 0, 3, 0, 0, 0, 3, 0, 5, 0, 0, 0, 2, 0, 4, 0, 0, 0, 5, 0, 2, 0, 0, 0, 1, 0, 2, 0, 5, 0, 1, 0, 4, 0, 2, 0, 1, 0, 5, 0, 3, 0, 1, 0, 3, 0, 4, 0),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 6,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 128, 0, 0, 0, 0, 255, 255, 255, 190, 0, 0, 0, 128, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 188, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 60, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 60, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 188)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pnqo5"]
+resource_name = "Spark_Cube"
+_surfaces = [{
+"aabb": AABB(-0.025, -0.5, -0.025, 0.05, 1.50001, 0.05),
+"attribute_data": PackedByteArray(0, 0, 32, 63, 0, 0, 0, 0, 0, 0, 32, 63, 0, 0, 128, 62, 0, 0, 32, 63, 0, 0, 0, 63, 0, 0, 32, 63, 0, 0, 64, 63, 0, 0, 192, 62, 0, 0, 128, 62, 0, 0, 192, 62, 0, 0, 0, 63, 0, 0, 192, 62, 0, 0, 64, 63, 0, 0, 192, 62, 0, 0, 128, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 0, 0, 128, 62, 0, 0, 0, 63, 0, 0, 128, 62, 0, 0, 0, 63, 0, 0, 128, 62, 0, 0, 0, 63, 0, 0, 128, 62, 0, 0, 0, 63, 0, 0, 64, 63, 0, 0, 0, 63, 0, 0, 64, 63, 0, 0, 0, 63, 0, 0, 64, 63, 0, 0, 0, 63, 0, 0, 64, 63),
+"format": 4119,
+"index_count": 24,
+"index_data": PackedByteArray(17, 0, 13, 0, 0, 0, 14, 0, 20, 0, 3, 0, 11, 0, 19, 0, 1, 0, 23, 0, 9, 0, 2, 0, 6, 0, 8, 0, 22, 0, 5, 0, 18, 0, 10, 0, 7, 0, 21, 0, 15, 0, 4, 0, 12, 0, 16, 0),
+"material": SubResource("StandardMaterial3D_1v42r"),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 128, 255, 127, 30, 131, 24, 134, 120, 254, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 128, 223, 252, 30, 131, 230, 121, 120, 254, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 128, 223, 252, 255, 255, 243, 124, 242, 252, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 128, 31, 3, 30, 131, 11, 131, 242, 252, 0, 0, 0, 0, 255, 255, 255, 190, 0, 0, 0, 128, 255, 127, 232, 121, 208, 133, 46, 250, 0, 0, 0, 0, 255, 255, 255, 190, 0, 0, 0, 128, 231, 249, 232, 121, 161, 139, 22, 253, 0, 0, 0, 0, 255, 255, 255, 190, 0, 0, 0, 128, 231, 249, 0, 0, 93, 116, 22, 253, 0, 0, 0, 0, 255, 255, 255, 190, 0, 0, 0, 128, 23, 6, 232, 121, 47, 122, 46, 250, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 188, 231, 249, 0, 0, 93, 116, 22, 253, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 188, 223, 252, 255, 255, 243, 124, 242, 252, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 188, 231, 249, 232, 121, 161, 139, 22, 253, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 188, 223, 252, 30, 131, 230, 121, 120, 254, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 60, 255, 127, 232, 121, 208, 133, 46, 250, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 60, 255, 127, 30, 131, 24, 134, 120, 254, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 60, 31, 3, 30, 131, 11, 131, 242, 252, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 60, 23, 6, 232, 121, 47, 122, 46, 250, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 60, 255, 127, 232, 121, 208, 133, 46, 250, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 60, 255, 127, 30, 131, 24, 134, 120, 254, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 60, 231, 249, 232, 121, 161, 139, 22, 253, 208, 204, 204, 60, 0, 0, 0, 0, 208, 204, 204, 60, 223, 252, 30, 131, 230, 121, 120, 254, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 188, 31, 3, 30, 131, 11, 131, 242, 252, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 188, 23, 6, 232, 121, 47, 122, 46, 250, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 188, 231, 249, 0, 0, 93, 116, 22, 253, 208, 204, 204, 188, 0, 0, 0, 0, 208, 204, 204, 188, 223, 252, 255, 255, 243, 124, 242, 252)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6dhkm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ya4b8"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, 1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+scale_min = 0.2
+scale_max = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_2o51d"]
+radius = 0.25
+height = 0.5
+
+[node name="Weapon" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_733kj")
+hit_marker = ExtResource("2_ghi58")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Gun_Rifle" parent="Mesh" instance=ExtResource("1_3w40h")]
+
+[node name="Gun_Rifle2" parent="Mesh/Gun_Rifle" index="0"]
+layers = 2
+
+[node name="Gun_Rifle_Magazine" parent="Mesh/Gun_Rifle/Gun_Rifle2" index="0"]
+layers = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05078e-07, 0.0798518, 1.20195)
+layers = 2
+material_override = SubResource("StandardMaterial3D_u0iu8")
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.8
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_b5nwt")
+draw_pass_1 = SubResource("ArrayMesh_pnqo5")
+
+[node name="Spark" type="GPUParticles3D" parent="."]
+top_level = true
+material_override = SubResource("StandardMaterial3D_u0iu8")
+cast_shadow = 0
+emitting = false
+amount = 256
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ya4b8")
+draw_pass_1 = SubResource("SphereMesh_2o51d")
+
+[editable path="Mesh/Gun_Rifle"]
